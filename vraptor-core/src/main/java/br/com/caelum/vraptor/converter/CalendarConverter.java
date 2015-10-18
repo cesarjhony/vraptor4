@@ -62,7 +62,13 @@ public class CalendarConverter implements Converter<Calendar> {
 		if (isNullOrEmpty(value)) {
 			return null;
 		}
-
+		
+		try {
+			Date dateTime = formatDateTime.parse(value);
+			Calendar calendar = Calendar.getInstance(locale);
+			calendar.setTime(dateTime);
+			retuarn calendar;
+		} catch (ParseException e1) {
 		try {
 			Date date = getDateFormat().parse(value);
 			Calendar calendar = Calendar.getInstance(locale);
